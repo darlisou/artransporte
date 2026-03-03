@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Glassmorphism Widget</title>
+    
+    <!-- Fonte Inter como fallback para SF Pro Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            /* Evita scroll horizontal */
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           HERO DEMO PARA VISUALIZAR O EFEITO
+           ========================================= */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a2a3a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* IMPORTANTE: Sem overflow: hidden para não quebrar o backdrop-filter no Chrome/Safari */
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Seção de Conteúdo (Abaixo da Hero) */
+        .content {
+            padding-top: 90px;
+            min-height: 50vh;
+            background-color: #ffffff;
+            text-align: center;
+            color: #333;
+        }
+
+        /* =========================================
+           WIDGET DE BUSCA - APPLE GLASSMORPHISM
+           ========================================= */
+        .search-widget {
+            /* Posicionamento e Sobreposição */
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            z-index: 10;
+            width: 90%;
+            max-width: 900px;
+            
+            /* Efeito Glassmorphism Líquido */
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            
+            /* Bordas e Sombras Premium */
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            
+            /* Formato e Espaçamento */
+            border-radius: 999px; /* Pílula perfeita */
+            padding: 10px 10px 10px 28px;
+            
+            /* Layout Interno */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            /* Animação de Entrada */
+            animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        /* Container dos Campos */
+        .fields-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        /* Campo Individual */
+        .field {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            flex: 1;
+        }
+
+        .field:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Ícones */
+        .field-icon {
+            font-size: 20px;
+            opacity: 0.85;
+            color: #ffffff;
+        }
+
+        /* Textos do Campo */
+        .field-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 100%;
+        }
+
+        .field-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.85);
+            opacity: 0.6;
+            font-weight: 600;
+        }
+
+        .field-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .field-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Divisórias Verticais */
+        .divider {
+            width: 1px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 4px;
+        }
+
+        /* Botão de Busca */
+        .search-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 999px;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+
+        .search-btn:hover {
+            background: rgba(255, 255, 255, 0.85);
+            transform: scale(1.02);
+        }
+
+        /* Animação Keyframes */
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, 80%);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, 50%);
+            }
+        }
+
+        /* =========================================
+           RESPONSIVO (Mobile < 768px)
+           ========================================= */
+        @media (max-width: 767px) {
+            .search-widget {
+                flex-direction: column;
+                border-radius: 24px; /* Perde formato pílula */
+                padding: 16px;
+            }
+
+            .fields-container {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .field {
+                width: 100%;
+                padding: 12px 16px;
+            }
+
+            .divider {
+                width: 100%;
+                height: 1px;
+                margin: 4px 0;
+            }
+
+            .search-btn {
+                width: 100%;
+                justify-content: center;
+                margin-left: 0;
+                margin-top: 12px;
+                padding: 16px 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Demo -->
+    <section class="hero">
+        <h1 class="hero-title">Descubra o Mundo</h1>
+        
+        <!-- Widget de Busca -->
+        <div class="search-widget">
+            <div class="fields-container">
+                <!-- Campo 1: Destino -->
+                <div class="field">
+                    <span class="field-icon">📍</span>
+                    <div class="field-content">
+                        <span class="field-label">Destino</span>
+                        <input type="text" class="field-input" placeholder="Para onde?">
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <!-- Campo 2: Data -->
+                <div class="field">
+                    <span class="field-icon">📅</span>
+                    <div class="field-content">
+                        <span class="field-label">Data</span>
+                        <input type="text" class="field-input" placeholder="Quando?">
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <!-- Campo 3: Passageiros -->
+                <div class="field">
+                    <span class="field-icon">👥</span>
+                    <div class="field-content">
+                        <span class="field-label">Passageiros</span>
+                        <input type="text" class="field-input" placeholder="Quantos?">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botão Buscar -->
+            <button class="search-btn">
+                <span>Buscar</span>
+                <span>🔍</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Conteúdo Abaixo -->
+    <section class="content">
+        <h2>Próximas Aventuras</h2>
+        <p style="margin-top: 10px; color: #666;">O efeito de sobreposição (overlapping) permite que o widget flutue entre as seções.</p>
+    </section>
+
+</body>
+</html>
