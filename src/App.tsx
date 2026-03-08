@@ -31,7 +31,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen selection:bg-[#007AFF] selection:text-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <div className="min-h-screen selection:bg-[#007AFF] selection:text-white overflow-x-hidden w-full max-w-full" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <MobileHome />
     </div>
   );

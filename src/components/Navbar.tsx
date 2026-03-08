@@ -5,41 +5,32 @@ import { Ship, Home, Map, Package, CalendarCheck, Sun, Moon, Menu, X } from 'luc
 export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') === 'dark';
+    }
+    return false;
+  });
   const [activeSection, setActiveSection] = useState('hero');
   const [pressedLink, setPressedLink] = useState<string | null>(null);
-
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     // Always start at home on load
     window.scrollTo(0, 0);
     setActiveSection('hero');
-    
-    const saved = localStorage.getItem('ar-theme');
-    const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const initialTheme = (saved || system) as 'light' | 'dark';
-    setTheme(initialTheme);
-    document.documentElement.setAttribute('data-theme', initialTheme);
   }, []);
 
-  const toggleTheme = () => {
-    document.documentElement.classList.add('theme-transitioning');
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('ar-theme', next);
-    
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (toggleBtn) {
-      toggleBtn.style.transform = 'scale(0.94)';
-      setTimeout(() => {
-        toggleBtn.style.transform = 'scale(1)';
-      }, 120);
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
     }
-
-    setTimeout(() => document.documentElement.classList.remove('theme-transitioning'), 300);
-  };
+  }, [isDark]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -102,8 +93,8 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
         style={scrolled ? { 
           background: 'var(--bg-navbar)',
           borderColor: 'var(--border-color)',
-          backdropFilter: 'blur(20px)', 
-          WebkitBackdropFilter: 'blur(20px)' 
+          backdropFilter: 'blur(12px)', 
+          WebkitBackdropFilter: 'blur(12px)' 
         } : {}}
       >
         <div className="navbar-inner h-[64px] md:h-[72px] flex items-center justify-between">
@@ -177,67 +168,13 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
           {/* Right Actions */}
           <div className="flex items-center gap-4">
             <button 
-              id="theme-toggle"
-              onClick={toggleTheme}
-              className="flex items-center gap-1 p-[2px] rounded-full transition-all duration-250 ease-out cursor-pointer"
-              style={{
-                background: 'var(--bg-pill)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: '1px solid var(--border-color)',
-                height: '40px'
-              }}
+              id="theme-toggle" 
+              aria-label="Alternar tema" 
+              onClick={() => setIsDark(!isDark)}
+              style={{background:'transparent',border:'none',cursor:'pointer',width:'44px',height:'44px',display:'flex',alignItems:'center',justifyContent:'center',position:'relative',padding:0,flexShrink:0}}
             >
-              <div 
-                id="icon-sun" 
-                className="flex items-center justify-center transition-all duration-300" 
-                style={theme === 'light' ? {
-                  background: 'rgba(255,255,255,0.88)',
-                  borderRadius: '50%',
-                  width: '36px',
-                  height: '36px',
-                  boxShadow: 'inset 0 1.5px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.20)',
-                  opacity: 1,
-                  color: '#1B4332'
-                } : {
-                  background: 'transparent',
-                  borderRadius: '50%',
-                  width: '36px',
-                  height: '36px',
-                  boxShadow: 'none',
-                  opacity: 0.55,
-                  color: scrolled ? 'var(--text-primary)' : 'white'
-                }}
-              >
-                <Sun className="w-5 h-5" />
-              </div>
-              <div 
-                id="icon-moon" 
-                className="flex items-center justify-center transition-all duration-300" 
-                style={theme === 'dark' ? {
-                  background: 'rgba(255,255,255,0.88)',
-                  borderRadius: '50%',
-                  width: '36px',
-                  height: '36px',
-                  boxShadow: 'inset 0 1.5px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.20)',
-                  opacity: 1,
-                  color: '#1B4332'
-                } : {
-                  background: 'transparent',
-                  borderRadius: '50%',
-                  width: '36px',
-                  height: '36px',
-                  boxShadow: 'none',
-                  opacity: 0.55,
-                  color: scrolled ? 'var(--text-primary)' : 'white'
-                }}
-              >
-                <Moon className="w-5 h-5" />
-              </div>
-            </button>
-            
-            <button className="hidden md:flex btn-reservar text-[15px]">
-              Reservar Agora
+              {!isDark && <Moon size={22} style={{position:'absolute'}} />}
+              {isDark && <Sun size={22} style={{position:'absolute'}} />}
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -262,8 +199,8 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
             className="fixed inset-0 z-[100] flex flex-col"
             style={{ 
               background: 'var(--bg-navbar)',
-              backdropFilter: 'blur(20px)', 
-              WebkitBackdropFilter: 'blur(20px)' 
+              backdropFilter: 'blur(12px)', 
+              WebkitBackdropFilter: 'blur(12px)' 
             }}
           >
             <div className="px-6 h-[64px] flex items-center justify-end">
@@ -291,14 +228,6 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
                   <span className="text-[24px] font-medium">{link.name}</span>
                 </motion.a>
               ))}
-              <motion.button 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.1, duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
-                className="btn-reservar mt-4 w-[80%] max-w-[300px] text-[18px]"
-              >
-                Reservar Agora
-              </motion.button>
             </div>
           </motion.div>
         )}

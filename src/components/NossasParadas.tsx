@@ -5,12 +5,12 @@ export default function NossasParadas() {
 
   useEffect(() => {
     const slides = [
-      { badge:"Pará • Ponto de Partida",    title:"BELÉM",       desc:"A capital da Amazônia. Ponto de embarque com cultura, culinária e o maior mercado a céu aberto do mundo.", tag:"Ver o Mercado do Ver-o-Peso",  imgLeft:"https://images.unsplash.com/photo-1569288063643-5d29ad8a1e5d?w=1400&auto=format&fit=crop", imgRight:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop", objPos:"center 40%" },
-      { badge:"Pará • 700km de Belém",  title:"SANTARÉM",    desc:"Onde o Rio Tapajós encontra o Amazonas. Praias de água doce e o famoso Alter do Chão.", tag:"Explorar Alter do Chão",          imgLeft:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&auto=format&fit=crop", imgRight:"https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&auto=format&fit=crop", objPos:"center 60%" },
-      { badge:"Pará • O ponto mais estreito",   title:"ÓBIDOS",      desc:"O ponto mais estreito do Rio Amazonas com 1,7km de largura. Fortaleza histórica e arquitetura colonial.", tag:"Conhecer a Fortaleza",             imgLeft:"https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1400&auto=format&fit=crop", imgRight:"https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&auto=format&fit=crop", objPos:"center 50%" },
-      { badge:"Amazonas • Capital do Boi", title:"PARINTINS",   desc:"A ilha do maior festival folclórico da Amazônia. Bumbá Garantido e Caprichoso encantam o mundo todo.", tag:"Descobrir o Festival",          imgLeft:"https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1400&auto=format&fit=crop", imgRight:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop", objPos:"center 45%" },
-      { badge:"Amazonas • 270km de Manaus",title:"ITACOATIARA",desc:"Segunda maior cidade do Amazonas. Famosa pelo festival de pesca e pela beleza às margens do Rio Amazonas.", tag:"Sentir a Cidade",                   imgLeft:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&auto=format&fit=crop", imgRight:"https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=600&auto=format&fit=crop", objPos:"center 55%" },
-      { badge:"Amazonas • Destino Final",title:"MANAUS",   desc:"A capital da floresta. Teatro Amazonas, encontro das águas e porta de entrada para a Amazônia profunda.", tag:"Chegar a Manaus",               imgLeft:"https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=1400&auto=format&fit=crop", imgRight:"https://images.unsplash.com/photo-1569288063643-5d29ad8a1e5d?w=600&auto=format&fit=crop", objPos:"center 40%" }
+      { badge:"Pará • Ponto de Partida",    title:"BELÉM",       desc:"A capital da Amazônia. Ponto de embarque com cultura, culinária e o maior mercado a céu aberto do mundo.", tag:"Ver o Mercado do Ver-o-Peso",  imgLeft:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Mercado_Ver-o-Peso_-_Bel%C3%A9m_do_Par%C3%A1.jpg/1024px-Mercado_Ver-o-Peso_-_Bel%C3%A9m_do_Par%C3%A1.jpg", objPos:"center 40%" },
+      { badge:"Pará • 700km de Belém",  title:"SANTARÉM",    desc:"Onde o Rio Tapajós encontra o Amazonas. Praias de água doce e o famoso Alter do Chão.", tag:"Explorar Alter do Chão",          imgLeft:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Encontro_das_%C3%81guas_-_Santar%C3%A9m.jpg/1024px-Encontro_das_%C3%81guas_-_Santar%C3%A9m.jpg", objPos:"center 60%" },
+      { badge:"Pará • O ponto mais estreito",   title:"ÓBIDOS",      desc:"O ponto mais estreito do Rio Amazonas com 1,7km de largura. Fortaleza histórica e arquitetura colonial.", tag:"Conhecer a Fortaleza",             imgLeft:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Forte_Pauxis_-_%C3%93bidos_-_Par%C3%A1.jpg/1024px-Forte_Pauxis_-_%C3%93bidos_-_Par%C3%A1.jpg", objPos:"center 50%" },
+      { badge:"Amazonas • Capital do Boi", title:"PARINTINS",   desc:"A ilha do maior festival folclórico da Amazônia. Bumbá Garantido e Caprichoso encantam o mundo todo.", tag:"Descobrir o Festival",          imgLeft:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Festival_Folcl%C3%B3rico_de_Parintins_2019.jpg/1024px-Festival_Folcl%C3%B3rico_de_Parintins_2019.jpg", objPos:"center 45%" },
+      { badge:"Amazonas • 270km de Manaus",title:"ITACOATIARA",desc:"Segunda maior cidade do Amazonas. Famosa pelo festival de pesca e pela beleza às margens do Rio Amazonas.", tag:"Sentir a Cidade",                   imgLeft:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Avenida_Parque_-_Itacoatiara_-_Amazonas.jpg/1024px-Avenida_Parque_-_Itacoatiara_-_Amazonas.jpg", objPos:"center 55%" },
+      { badge:"Amazonas • Destino Final",title:"MANAUS",   desc:"A capital da floresta. Teatro Amazonas, encontro das águas e porta de entrada para a Amazônia profunda.", tag:"Chegar a Manaus",               imgLeft:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Teatro_Amazonas_-_Manaus.jpg/1024px-Teatro_Amazonas_-_Manaus.jpg", objPos:"center 40%" }
     ];
 
     let curr = 0;
@@ -168,12 +168,31 @@ export default function NossasParadas() {
           padding-top: 80px;
           padding-bottom: 120px;
         }
+        @media (max-width: 767px) {
+          #viagens {
+            padding-bottom: 40px;
+          }
+        }
 
         /* ── HEADER — respects the invisible line ── */
         .paradas-header {
           /* padding handled by global CSS */
           max-width: 1280px;
           margin: 0 auto 24px auto;
+          padding-left: 24px !important;
+          padding-right: 24px !important;
+        }
+        @media (min-width: 768px) {
+          .paradas-header {
+            padding-left: 48px !important;
+            padding-right: 48px !important;
+          }
+        }
+        @media (min-width: 1280px) {
+          .paradas-header {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+          }
         }
         .paradas-header h2 {
           font-size: 28px;
@@ -194,38 +213,50 @@ export default function NossasParadas() {
         .paradas-slider {
           display: flex;
           align-items: center;
-          height: 420px;
+          height: 340px;
           /* padding handled by global CSS */
           gap: 14px;
           position: relative;
           overflow: hidden;       /* clips card 3 at right edge */
+          padding-left: 24px !important;
+          padding-right: 0px !important;
+        }
+        @media (min-width: 768px) {
+          .paradas-slider {
+            padding-left: 48px !important;
+          }
+        }
+        @media (min-width: 1280px) {
+          .paradas-slider {
+            padding-left: 0px !important;
+          }
         }
         @media (max-width: 1024px) {
-          .paradas-slider { height: 360px; gap: 10px; }
+          .paradas-slider { height: 300px; gap: 10px; }
         }
         @media (max-width: 768px) {
-          .paradas-slider { height: 300px; gap: 8px; }
+          .paradas-slider { height: 260px; gap: 8px; }
         }
 
         /* ── CARD 1 — 68%, dominant, full focus ── */
         .slide-card-1 {
           flex-shrink: 0;
           width: 68%;
-          height: 420px;
+          height: 340px;
           border-radius: 22px;
           overflow: hidden;
           position: relative;
           box-shadow: 0 24px 64px rgba(0,0,0,0.45);
           z-index: 2;
         }
-        @media (max-width: 1024px) { .slide-card-1 { height: 360px; width: 68%; } }
-        @media (max-width: 768px)  { .slide-card-1 { height: 300px; width: 76%; border-radius: 18px; } }
+        @media (max-width: 1024px) { .slide-card-1 { height: 300px; width: 68%; } }
+        @media (max-width: 768px)  { .slide-card-1 { height: 260px; width: 76%; border-radius: 18px; } }
 
         /* ── CARD 2 — 22%, support, clearly smaller ── */
         .slide-card-2 {
           flex-shrink: 0;
           width: 22%;
-          height: 310px;
+          height: 260px;
           border-radius: 18px;
           overflow: hidden;
           position: relative;
@@ -237,14 +268,14 @@ export default function NossasParadas() {
           transition: opacity 0.3s ease, transform 0.3s ease;
         }
         .slide-card-2:hover { opacity: 0.88; transform: scale(1.02); }
-        @media (max-width: 1024px) { .slide-card-2 { height: 265px; width: 23%; } }
-        @media (max-width: 768px)  { .slide-card-2 { height: 220px; width: 20%; opacity: 0.5; border-radius: 14px; } }
+        @media (max-width: 1024px) { .slide-card-2 { height: 220px; width: 23%; } }
+        @media (max-width: 768px)  { .slide-card-2 { height: 180px; width: 20%; opacity: 0.5; border-radius: 14px; } }
 
         /* ── CARD 3 — ~8% visible, just a hint, cut by right edge ── */
         .slide-card-3 {
           flex-shrink: 0;
           width: 10%;
-          height: 210px;
+          height: 180px;
           border-radius: 14px;
           overflow: hidden;
           position: relative;
@@ -293,7 +324,7 @@ export default function NossasParadas() {
           position: absolute;
           top: 36px;
           left: 40px;
-          font-size: clamp(32px, 4vw, 56px); font-weight: 900;
+          font-size: clamp(28px, 3.5vw, 48px); font-weight: 900;
           color: #fff; letter-spacing: -0.03em;
           line-height: 1; margin-bottom: 0;
         }
@@ -334,6 +365,20 @@ export default function NossasParadas() {
           gap: 20px;
           margin-top: 20px;
           /* padding handled by global CSS */
+          padding-left: 24px !important;
+          padding-right: 24px !important;
+        }
+        @media (min-width: 768px) {
+          .paradas-controls {
+            padding-left: 48px !important;
+            padding-right: 48px !important;
+          }
+        }
+        @media (min-width: 1280px) {
+          .paradas-controls {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+          }
         }
         @media (max-width: 1024px) { .paradas-controls { /* padding handled by global CSS */ } }
         @media (max-width: 768px)  { .paradas-controls { gap: 14px; } }

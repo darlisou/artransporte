@@ -49,9 +49,9 @@ export default function FreteNaval() {
 
         {/* RIGHT — content + form */}
         <div className="frete-content" data-animate>
-          <span className="frete-label">Frete Naval</span>
+          <span className="frete-label">FRETE NAVAL</span>
           <h2 className="frete-title">Amazônia conectada<br/>pela força do rio</h2>
-          <p className="frete-subtitle">Transporte sua carga com segurança de Belém a Manaus. Rastreamento em tempo real e seguro incluso.</p>
+          <p className="frete-subtitle">Transporte sua carga com segurança de Belém a Manaus.</p>
 
           {/* Cargo type pills */}
           <div className="frete-types">

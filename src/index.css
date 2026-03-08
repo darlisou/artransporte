@@ -101,8 +101,6 @@ section:not(.hero):not(#viagens) > *:not(style) {
 
 /* "Nossas Paradas" header still uses invisible line */
 .paradas-header {
-  padding-left: 80px;
-  padding-right: 80px;
   margin-bottom: 24px;
 }
 
@@ -114,26 +112,20 @@ section:not(.hero):not(#viagens) > *:not(style) {
   margin-left: auto;
   margin-right: auto;
   max-width: 560px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 /* Slider left padding only — right bleeds for effect */
 .paradas-slider {
-  padding-left: 80px;
   padding-right: 0;
 }
 
 /* Controls row aligns to invisible line */
 .paradas-controls {
-  padding-left: 80px;
-  padding-right: 80px;
 }
 
 @media (max-width: 1024px) {
-  .paradas-header, .paradas-slider, .paradas-controls { padding-left: 40px; }
 }
 @media (max-width: 768px) {
-  .paradas-header, .paradas-slider, .paradas-controls { padding-left: 24px; }
 }
 
 [data-animate] {
@@ -273,17 +265,23 @@ input:focus-visible {
 }
 @media (max-width: 480px) {
   .accommodations-grid { grid-template-columns: 1fr; gap: 12px; }
-  .accommodation-card  { aspect-ratio: 16/9; min-height: 220px; }
+  .accommodation-card  { aspect-ratio: auto; min-height: 160px; }
 }
 
 /* ── FRETE NAVAL ── */
 
 #frete-naval {
-  padding: 120px 80px;
+  padding: 120px 24px;
   box-sizing: border-box;
 }
-@media (max-width: 1024px) { #frete-naval { padding: 80px 40px; } }
-@media (max-width: 768px)  { #frete-naval { padding: 60px 24px; } }
+@media (min-width: 768px) {
+  #frete-naval { padding: 120px 48px; }
+}
+@media (min-width: 1280px) {
+  #frete-naval { padding: 120px 0px; }
+}
+@media (max-width: 1024px) { #frete-naval { padding-top: 80px; padding-bottom: 80px; } }
+@media (max-width: 768px)  { #frete-naval { padding-top: 60px; padding-bottom: 60px; } }
 
 /* Inner — split layout */
 .frete-inner {
@@ -309,7 +307,9 @@ input:focus-visible {
   overflow: hidden;
   aspect-ratio: 1 / 1; /* Changed from 4/5 to 1/1 to reduce vertical height */
   box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  margin-left: 0px;
 }
+
 .frete-image img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
@@ -339,6 +339,7 @@ input:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-right: 0px;
 }
 
 .frete-label {
@@ -404,7 +405,7 @@ input:focus-visible {
 [data-theme="dark"] .frete-type.active {
   background: #fff;
   border-color: #fff;
-  color: #000;
+  color: #1A1A1A;
 }
 
 /* Form */
@@ -459,7 +460,7 @@ input:focus-visible {
 
 [data-theme="dark"] .frete-field input {
   border-color: rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.05);
+  background: var(--bg-surface);
 }
 [data-theme="dark"] .frete-field input:focus {
   border-color: #22c55e;
@@ -537,6 +538,7 @@ input:focus-visible {
 
 :root {
   --bg-primary: #FAFAF5;
+  --bg-secondary: #F0F0F0;
   --bg-surface: #FFFFFF;
   --bg-navbar: rgba(255,255,255,0.82);
   --bg-card: #FFFFFF;
@@ -548,17 +550,17 @@ input:focus-visible {
 }
 
 [data-theme="dark"] {
-  --bg-primary: #111111;
-  --bg-secondary: #161616;
-  --bg-surface: #1C1C1C;
-  --bg-navbar: rgba(17,17,17,0.85);
-  --bg-card: #1C1C1C;
+  --bg-primary: #1A1A1A;
+  --bg-secondary: #2E2E2E;
+  --bg-surface: #3B3B3B;
+  --bg-navbar: rgba(26,26,26,0.85);
+  --bg-card: #3B3B3B;
   --bg-search: rgba(255,255,255,0.06);
   --bg-pill: rgba(255,255,255,0.08);
   --text-primary: #F5F5F5;
   --text-secondary: #A0A0A0;
-  --border-color: #2A2A2A;
-  --border-strong: #383838;
+  --border-color: #3B3B3B;
+  --border-strong: #4A4A4A;
 }
 
 .theme-transitioning, .theme-transitioning * {
@@ -573,6 +575,8 @@ input:focus-visible {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -581,6 +585,9 @@ body {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -691,3 +698,39 @@ body {
   transform: scale(0.96) translateY(0);
   transition: transform 120ms ease-out, box-shadow 120ms ease-out;
 }
+
+/* ── THEME TOGGLE (APPLE LIQUID GLASS) ── */
+.theme-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%; border: none;
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center;
+  justify-content: center;
+  padding: 0; flex-shrink: 0;
+}
+.theme-btn-visual {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, background 0.3s ease;
+  position: relative; overflow: hidden;
+}
+.dark .theme-btn-visual {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.theme-btn:active .theme-btn-visual { transform: scale(0.92); }
+.theme-btn .icon-moon,
+.theme-btn .icon-sun {
+  position: absolute;
+  transition: opacity 0.2s ease, transform 0.3s ease;
+}
+.theme-btn .icon-moon { opacity: 1; transform: rotate(0deg); color: #1D1D1F; }
+.theme-btn .icon-sun  { opacity: 0; transform: rotate(-20deg); color: #F5F5F7; }
+.dark .theme-btn .icon-moon { opacity: 0; transform: rotate(20deg); }
+.dark .theme-btn .icon-sun  { opacity: 1; transform: rotate(0deg); }
