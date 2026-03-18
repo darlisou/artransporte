@@ -94,12 +94,11 @@ const frotaItems = [
   }
 ];
 
+import InfiniteStackDeck from './InfiniteStackDeck';
+
 export default function MobileHome() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentFrotaIndex, setCurrentFrotaIndex] = useState(0);
-  const [frotaDragStart, setFrotaDragStart] = useState(0);
-  const [isFrotaDragging, setIsFrotaDragging] = useState(false);
   const [isViagensOpen, setIsViagensOpen] = useState(false);
 
   useEffect(() => {
@@ -108,27 +107,6 @@ export default function MobileHome() {
     }, 8500);
     return () => clearInterval(timer);
   }, []);
-
-  const goToFrotaCard = (index: number) => {
-    const total = frotaItems.length;
-    setCurrentFrotaIndex(((index % total) + total) % total);
-  };
-
-  const handleFrotaDragStart = (clientX: number) => {
-    setFrotaDragStart(clientX);
-    setIsFrotaDragging(true);
-  };
-
-  const handleFrotaDragEnd = (clientX: number) => {
-    if (!isFrotaDragging) return;
-    setIsFrotaDragging(false);
-    const diff = frotaDragStart - clientX;
-    if (diff > 50) {
-      goToFrotaCard(currentFrotaIndex + 1);
-    } else if (diff < -50) {
-      goToFrotaCard(currentFrotaIndex - 1);
-    }
-  };
 
   return (
     <div 
@@ -222,79 +200,36 @@ export default function MobileHome() {
           <button className="text-[13px] md:text-[16px] text-[#007AFF] font-medium hover:underline m-0 p-0 text-right">Ver Tudo</button>
         </div>
         
-        <div className="accommodations-grid pb-4 md:pb-8">
-          {accommodations.map((item) => {
-            let glassStyle = '';
-            let iconColor = 'text-[#1C1C1E]';
-            let webkitFilter = '';
-            
-            if (item.tier === 'bronze') {
-              glassStyle = 'bg-[rgba(255,255,255,0.45)] backdrop-blur-[20px] shadow-[inset_0_0_0_0.5px_rgba(255,255,255,0.3)]';
-              webkitFilter = 'blur(20px)';
-            } else if (item.tier === 'silver') {
-              glassStyle = 'bg-[rgba(255,255,255,0.45)] backdrop-blur-[20px] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)]';
-              webkitFilter = 'blur(20px)';
-            } else if (item.tier === 'gold') {
-              glassStyle = 'bg-[rgba(255,245,230,0.05)] backdrop-blur-[20px] shadow-[inset_0_0_0_1px_rgba(255,215,0,0.3),0_0_10px_rgba(255,215,0,0.2)]';
-              webkitFilter = 'blur(20px)';
-              iconColor = 'text-white';
-            } else if (item.tier === 'diamond') {
-              glassStyle = 'bg-[rgba(255,255,255,0.1)] backdrop-blur-[20px] saturate-[2.0] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.3)]';
-              webkitFilter = 'blur(20px) saturate(200%)';
-              iconColor = 'text-white';
-            }
-
-            return (
-              <div key={item.id} className="accommodation-card group" data-animate>
-                <img src={item.image} alt={item.title} />
-                
-                {/* Card Footer */}
-                <div className="accommodation-card-content flex flex-col">
-                  <h3 className="text-white font-bold text-[20px] leading-tight mb-1 drop-shadow-md flex items-center gap-1.5">
-                    {item.title}
-                    {item.tier === 'diamond' && <Diamond className="w-4 h-4 text-white drop-shadow-md" fill="currentColor" />}
-                  </h3>
-                  <p className="text-white/90 font-normal text-[14px] drop-shadow-md mb-3">{item.subtitle}</p>
-                  
-                  <div 
-                    className={`self-start flex items-center gap-2 px-3 py-1.5 rounded-full ${glassStyle}`}
-                    style={{ WebkitBackdropFilter: webkitFilter }}
-                  >
-                    {item.icons.map((Icon, i) => (
-                      <Icon key={i} className={`w-4 h-4 ${iconColor}`} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <InfiniteStackDeck items={accommodations} />
       </div>
 
       {/* Services */}
       <div id="frete" className="mt-8 md:mt-12 max-w-7xl mx-auto px-6 md:px-12 xl:px-0">
         <h2 className="text-[28px] font-[800] md:font-semibold tracking-tight mb-5 md:mb-8" style={{ color: 'var(--text-primary)' }} data-animate>Serviços</h2>
-        <div className="grid grid-cols-3 gap-3">
-          <div className="service-card aspect-square w-full rounded-[22px] flex flex-col items-center justify-center shadow-md border-0" style={{ background: 'var(--bg-secondary)' }} data-animate>
-            <Wifi className="w-7 h-7" strokeWidth={2} style={{ color: 'var(--text-primary)' }} />
+        <div className="grid grid-cols-4 md:grid-cols-3 gap-[10px] md:gap-3 justify-center md:justify-start mx-auto md:mx-0 w-fit md:w-full">
+          <div className="aspect-square w-[68px] md:w-full rounded-[16px] md:rounded-[22px] md:p-[32px_24px] md:gap-[12px] flex flex-col items-center justify-center shadow-md border-0 hover:-translate-y-1 hover:shadow-lg transition-all duration-300" style={{ background: 'var(--bg-secondary)' }} data-animate>
+            <Wifi className="w-7 h-7 md:w-[36px] md:h-[36px] opacity-75" strokeWidth={2} style={{ color: 'var(--text-primary)' }} />
           </div>
-          <div className="service-card aspect-square w-full rounded-[22px] flex flex-col items-center justify-center shadow-md border-0" style={{ background: 'var(--bg-secondary)' }} data-animate>
-            <Utensils className="w-7 h-7" strokeWidth={2} style={{ color: 'var(--text-primary)' }} />
+          <div className="aspect-square w-[68px] md:w-full rounded-[16px] md:rounded-[22px] md:p-[32px_24px] md:gap-[12px] flex flex-col items-center justify-center shadow-md border-0 hover:-translate-y-1 hover:shadow-lg transition-all duration-300" style={{ background: 'var(--bg-secondary)' }} data-animate>
+            <Utensils className="w-7 h-7 md:w-[36px] md:h-[36px] opacity-75" strokeWidth={2} style={{ color: 'var(--text-primary)' }} />
           </div>
-          <div className="service-card aspect-square w-full rounded-[22px] flex flex-col items-center justify-center shadow-md border-0" style={{ background: 'var(--bg-secondary)' }} data-animate>
-            <PawPrint className="w-7 h-7" strokeWidth={2} style={{ color: 'var(--text-primary)' }} />
+          <div className="aspect-square w-[68px] md:w-full rounded-[16px] md:rounded-[22px] md:p-[32px_24px] md:gap-[12px] flex flex-col items-center justify-center shadow-md border-0 hover:-translate-y-1 hover:shadow-lg transition-all duration-300" style={{ background: 'var(--bg-secondary)' }} data-animate>
+            <PawPrint className="w-7 h-7 md:w-[36px] md:h-[36px] opacity-75" strokeWidth={2} style={{ color: 'var(--text-primary)' }} />
+          </div>
+          <div className="aspect-square w-[68px] md:hidden rounded-[16px] flex flex-col items-center justify-center shadow-md border-0 hover:-translate-y-1 hover:shadow-lg transition-all duration-300" style={{ background: 'var(--bg-secondary)' }} data-animate>
+            <Anchor className="w-7 h-7 opacity-75" strokeWidth={2} style={{ color: 'var(--text-primary)' }} />
           </div>
         </div>
       </div>
 
       {/* Nossa Frota */}
-      <div className="mt-8 md:mt-12 max-w-7xl mx-auto px-6 md:px-12 xl:px-0">
+      <div className="mt-8 md:mt-12 max-w-7xl mx-auto px-[15px] md:px-12 xl:px-0">
         <h2 className="text-[28px] font-[800] md:font-semibold tracking-tight mb-5 md:mb-8" style={{ color: 'var(--text-primary)' }} data-animate>Nossa Frota</h2>
         
         {/* Desktop Grid */}
         <div className="hidden md:grid grid-cols-2 gap-[12px]">
           {frotaItems.map((item) => (
-            <div key={item.id} className="fleet-card relative rounded-[20px] overflow-hidden h-[260px] cursor-pointer shadow-[0_4px_20px_rgba(0,122,255,0.15)] transition-transform duration-100 ease-in-out active:scale-[0.97] group" data-animate>
+            <div key={item.id} className="fleet-card relative rounded-[20px] overflow-hidden h-[260px] cursor-pointer shadow-[0_4px_20px_rgba(0,122,255,0.15)] active:scale-[0.97] group" data-animate>
               <img src={item.image} alt={item.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div className="absolute top-[14px] left-[14px] flex items-center gap-1.5 px-[12px] py-[5px] rounded-[100px] bg-[rgba(255,255,255,0.25)] border border-[rgba(255,255,255,0.4)]" style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
@@ -309,33 +244,24 @@ export default function MobileHome() {
           ))}
         </div>
 
-        {/* Mobile Carousel */}
-        <div className="md:hidden overflow-x-hidden relative w-full pb-[24px]">
-          <div 
-            className="flex gap-[12px] transition-transform duration-500"
-            style={{ transform: `translateX(calc(-${currentFrotaIndex * 85}% - ${currentFrotaIndex * 12}px))`, transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }}
-            onTouchStart={(e) => handleFrotaDragStart(e.touches[0].clientX)}
-            onTouchMove={(e) => { if (isFrotaDragging) e.preventDefault(); }}
-            onTouchEnd={(e) => handleFrotaDragEnd(e.changedTouches[0].clientX)}
-            onMouseDown={(e) => handleFrotaDragStart(e.clientX)}
-            onMouseUp={(e) => handleFrotaDragEnd(e.clientX)}
-            onMouseLeave={(e) => handleFrotaDragEnd(e.clientX)}
-          >
-            {frotaItems.map((item, index) => (
+        {/* Mobile Grid */}
+        <div className="md:hidden w-full pb-[24px]">
+          <div className="grid grid-cols-2 gap-[15px]">
+            {frotaItems.map((item) => (
               <div 
                 key={item.id} 
-                className={`fleet-card frota-card relative rounded-[24px] overflow-hidden h-[280px] shrink-0 min-w-[85%] cursor-pointer shadow-[0_4px_20px_rgba(0,122,255,0.15)] ${index === currentFrotaIndex ? 'active' : ''}`}
+                className="fleet-card relative rounded-[16px] overflow-hidden h-[200px] cursor-pointer shadow-[0_4px_20px_rgba(0,122,255,0.15)]"
                 data-animate
               >
                 <img src={item.image} alt={item.title} className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div className="absolute top-[16px] left-[16px] flex items-center gap-1.5 px-[14px] py-[6px] rounded-[100px] bg-[rgba(255,255,255,0.25)] border border-[rgba(255,255,255,0.4)]" style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
-                  <item.Icon className={`w-3.5 h-3.5 ${item.iconColor}`} fill="currentColor" />
-                  <span className="text-[#1C1C1E] text-[13px] font-semibold">{item.tag}</span>
+                <div className="absolute top-[12px] left-[12px] flex items-center gap-1 px-[10px] py-[4px] rounded-[100px] bg-[rgba(255,255,255,0.25)] border border-[rgba(255,255,255,0.4)]" style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
+                  <item.Icon className={`w-3 h-3 ${item.iconColor}`} fill="currentColor" />
+                  <span className="text-[#1C1C1E] text-[10px] font-semibold">{item.tag}</span>
                 </div>
-                <div className="absolute bottom-[20px] left-[20px] right-[20px] flex flex-col">
-                  <h3 className="text-white font-bold text-[18px] leading-tight">{item.title}</h3>
-                  <p className="text-[rgba(255,255,255,0.78)] font-normal text-[13px] mt-[4px] leading-snug">{item.subtitle}</p>
+                <div className="absolute bottom-[12px] left-[12px] right-[12px] flex flex-col">
+                  <h3 className="text-white font-bold text-[14px] leading-tight">{item.title}</h3>
+                  <p className="text-[rgba(255,255,255,0.78)] font-normal text-[11px] mt-[2px] leading-snug line-clamp-2">{item.subtitle}</p>
                 </div>
               </div>
             ))}

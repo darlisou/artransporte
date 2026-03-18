@@ -85,7 +85,7 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
   return (
     <>
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out ${
+        className={`absolute top-0 left-0 right-0 z-50 transition-all duration-400 ease-out ${
           scrolled 
             ? 'border-b' 
             : 'bg-transparent border-b border-transparent'
@@ -97,16 +97,18 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
           WebkitBackdropFilter: 'blur(12px)' 
         } : {}}
       >
-        <div className="navbar-inner h-[64px] md:h-[72px] flex items-center justify-between">
+        <div className="navbar-inner h-[80px] md:h-[96px] flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => {
             const el = document.getElementById('hero');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}>
-            <Ship className={`w-6 h-6 md:w-7 md:h-7 ${scrolled ? 'text-[var(--text-primary)]' : 'text-white'}`} strokeWidth={1.5} />
-            <span className={`font-serif font-bold text-[16px] md:text-[20px] tracking-wide ${scrolled ? 'text-[var(--text-primary)]' : 'text-white'}`}>
-              AR TRANSPORTE
-            </span>
+            <img 
+              src="https://i.ibb.co/WNFFF998/unnamed-Photoroom.png" 
+              alt="AR Transporte Logo" 
+              className="h-16 md:h-20 w-auto object-contain"
+              referrerPolicy="no-referrer"
+            />
           </div>
 
           {/* Desktop Nav */}
@@ -155,8 +157,8 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
                   }}
                 >
                   <div className="flex items-center gap-[6px]">
-                    <link.icon className={`w-[16px] h-[16px] ${isActive ? 'text-[#1B4332]' : (scrolled ? 'text-[var(--text-primary)]' : 'text-white')}`} strokeWidth={2} />
-                    <span className={`text-[13px] font-semibold tracking-wide ${isActive ? 'text-[#1B4332]' : (scrolled ? 'text-[var(--text-primary)]' : 'text-white')}`}>
+                    <link.icon className={`w-[16px] h-[16px] ${isActive ? 'text-[#003DA5]' : (scrolled ? 'text-[var(--text-primary)]' : 'text-white')}`} strokeWidth={2} />
+                    <span className={`text-[13px] font-semibold tracking-wide ${isActive ? 'text-[#003DA5]' : (scrolled ? 'text-[var(--text-primary)]' : 'text-white')}`}>
                       {link.name}
                     </span>
                   </div>
@@ -169,9 +171,10 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
           <div className="flex items-center gap-4">
             <button 
               id="theme-toggle" 
+              className="hidden md:flex"
               aria-label="Alternar tema" 
               onClick={() => setIsDark(!isDark)}
-              style={{background:'transparent',border:'none',cursor:'pointer',width:'44px',height:'44px',display:'flex',alignItems:'center',justifyContent:'center',position:'relative',padding:0,flexShrink:0}}
+              style={{background:'transparent',border:'none',cursor:'pointer',width:'44px',height:'44px',alignItems:'center',justifyContent:'center',position:'relative',padding:0,flexShrink:0}}
             >
               {!isDark && <Moon size={22} style={{position:'absolute'}} />}
               {isDark && <Sun size={22} style={{position:'absolute'}} />}
@@ -224,11 +227,45 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
                   className="flex flex-col items-center gap-2"
                   style={{ color: 'var(--text-primary)' }}
                 >
-                  <link.icon className="w-8 h-8 text-[#1B4332]" strokeWidth={1.5} />
+                  <link.icon className="w-8 h-8 text-[#003DA5]" strokeWidth={1.5} />
                   <span className="text-[24px] font-medium">{link.name}</span>
                 </motion.a>
               ))}
             </div>
+
+            {/* Configurações Section */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              className="w-full px-8 pb-12 mt-auto"
+            >
+              <div className="text-[12px] font-bold uppercase tracking-wider mb-4 opacity-50" style={{ color: 'var(--text-primary)' }}>
+                Configurações
+              </div>
+              <div 
+                className="flex items-center justify-between w-full py-4 border-t"
+                style={{ borderColor: 'rgba(150,150,150,0.2)' }}
+              >
+                <span className="text-[18px] font-medium" style={{ color: 'var(--text-primary)' }}>Aparência</span>
+                <button 
+                  id="theme-toggle-mobile" 
+                  aria-label="Alternar tema" 
+                  onClick={() => setIsDark(!isDark)}
+                  style={{background:'transparent',border:'none',cursor:'pointer',width:'44px',height:'44px',display:'flex',alignItems:'center',justifyContent:'center',position:'relative',padding:0,flexShrink:0}}
+                >
+                  {!isDark && <Moon size={22} style={{position:'absolute', color: 'var(--text-primary)'}} />}
+                  {isDark && <Sun size={22} style={{position:'absolute', color: 'var(--text-primary)'}} />}
+                </button>
+              </div>
+              <button 
+                className="flex items-center justify-between w-full py-4 border-t"
+                style={{ borderColor: 'rgba(150,150,150,0.2)', color: '#EF4444' }}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="text-[18px] font-medium">Sair</span>
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

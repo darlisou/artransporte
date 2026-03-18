@@ -174,9 +174,11 @@ input:focus-visible {
   gap: 12px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+@media (hover: hover) {
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  }
 }
 .service-card svg {
   width: 36px;
@@ -196,14 +198,16 @@ input:focus-visible {
   transition: transform 0.3s cubic-bezier(0,0,0.2,1),
               box-shadow 0.3s cubic-bezier(0,0,0.2,1);
 }
-.fleet-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 44px rgba(0,0,0,0.16);
-}
 .fleet-card img {
   transition: transform 0.5s cubic-bezier(0,0,0.2,1);
 }
-.fleet-card:hover img { transform: scale(1.06); }
+@media (hover: hover) {
+  .fleet-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 44px rgba(0,0,0,0.16);
+  }
+  .fleet-card:hover img { transform: scale(1.06); }
+}
 
 /* ── ACCOMMODATION CARDS — larger, premium proportion ── */
 
@@ -225,11 +229,6 @@ input:focus-visible {
   transition: transform 0.3s cubic-bezier(0,0,0.2,1),
               box-shadow 0.3s cubic-bezier(0,0,0.2,1);
 }
-.accommodation-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.15);
-}
-
 /* Card image — fills entire card */
 .accommodation-card img {
   width: 100%;
@@ -238,8 +237,14 @@ input:focus-visible {
   display: block;
   transition: transform 0.4s cubic-bezier(0,0,0.2,1);
 }
-.accommodation-card:hover img {
-  transform: scale(1.05);
+@media (hover: hover) {
+  .accommodation-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.15);
+  }
+  .accommodation-card:hover img {
+    transform: scale(1.05);
+  }
 }
 
 /* Text overlay at bottom */
@@ -598,17 +603,6 @@ body {
   ::-webkit-scrollbar {
     display: none;
   }
-}
-
-@keyframes peekPulse {
-  0%   { transform: translateX(0px); }
-  50%  { transform: translateX(-10px); }
-  100% { transform: translateX(0px); }
-}
-
-@media (max-width: 767px) {
-  .frota-card:not(.active) { animation: peekPulse 2.8s ease-in-out infinite; }
-  .frota-card.active { animation: none; }
 }
 
 /* === SPLASH SCREEN === */
