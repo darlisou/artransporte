@@ -18,21 +18,50 @@ interface InfiniteStackDeckProps {
 export default function InfiniteStackDeck({ items }: InfiniteStackDeckProps) {
   const [cards, setCards] = useState<Accommodation[]>(items);
 
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const swipeThreshold = 50;
-    const velocityThreshold = 500;
-    
-    // Check if the swipe was strong enough or far enough in ANY horizontal direction
-    const isSwipe = Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > velocityThreshold;
+  const swipeLeft = () => {
+    // Avança (topo vai pro final)
+    setCards((prev) => {
+      const newCards = [...prev];
+      const topCard = newCards.shift();
+      if (topCard) newCards.push(topCard);
+      return newCards;
+    });
+  };
 
-    if (isSwipe) {
-      // Any swipe (left or right) moves the top card to the back of the deck
-      setCards((prev) => {
-        const newCards = [...prev];
-        const topCard = newCards.shift();
-        if (topCard) newCards.push(topCard);
-        return newCards;
-      });
+  const swipeRight = () => {
+    // Volta (final vai pro topo)
+    setCards((prev) => {
+      const newCards = [...prev];
+      const bottomCard = newCards.pop();
+      if (bottomCard) newCards.unshift(bottomCard);
+      return newCards;
+    });
+  };
+
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const swipeThreshold = 20;
+    const velocityThreshold = 200;
+    
+    const isLeftSwipe = info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold;
+    const isRightSwipe = info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold;
+
+    if (isLeftSwipe) {
+      swipeLeft();
+    } else if (isRightSwipe) {
+      swipeRight();
+    }
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>, isTop: boolean) => {
+    if (!isTop) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    
+    // Se clicou na metade esquerda, volta. Se clicou na metade direita, avança.
+    if (clickX < rect.width / 2) {
+      swipeRight();
+    } else {
+      swipeLeft();
     }
   };
 
@@ -81,7 +110,7 @@ export default function InfiniteStackDeck({ items }: InfiniteStackDeckProps) {
             style={{
               zIndex,
               transformOrigin: 'center center',
-              touchAction: isTop ? 'none' : 'auto', // Prevents scroll jitter on mobile
+              touchAction: isTop ? 'pan-y' : 'auto', // Allow vertical scroll, capture horizontal pan
             }}
             initial={{ scale: 0.8, opacity: 0, y: 50, x: 0 }}
             animate={{
@@ -92,15 +121,16 @@ export default function InfiniteStackDeck({ items }: InfiniteStackDeckProps) {
             }}
             transition={{
               type: 'spring',
-              stiffness: 300,
+              stiffness: 400,
               damping: 30,
               mass: 1,
             }}
             drag={isTop ? 'x' : false}
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.8}
+            dragConstraints={false}
             onDragEnd={isTop ? handleDragEnd : undefined}
+            onClick={(e) => handleClick(e, isTop)}
             whileDrag={{ scale: 1.02, cursor: 'grabbing' }}
+            whileTap={isTop ? { scale: 0.98 } : undefined}
           >
             <img src={item.image} alt={item.title} className="w-full h-full object-cover pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80 pointer-events-none" />

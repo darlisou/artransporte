@@ -5,6 +5,7 @@ import { Ship, Home, Map, Package, CalendarCheck, Sun, Moon, Menu, X } from 'luc
 export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') === 'dark';
@@ -103,12 +104,17 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
             const el = document.getElementById('hero');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}>
-            <img 
-              src="https://i.ibb.co/WNFFF998/unnamed-Photoroom.png" 
-              alt="AR Transporte Logo" 
-              className="h-16 md:h-20 w-auto object-contain"
-              referrerPolicy="no-referrer"
-            />
+            {imageError ? (
+              <span className="text-xl md:text-2xl font-bold text-[#007AFF]">AR Transportes</span>
+            ) : (
+              <img 
+                src="https://i.ibb.co/WNFFF998/unnamed-Photoroom.png" 
+                alt="AR Transporte Logo" 
+                className="h-16 md:h-20 w-auto object-contain"
+                referrerPolicy="no-referrer"
+                onError={() => setImageError(true)}
+              />
+            )}
           </div>
 
           {/* Desktop Nav */}

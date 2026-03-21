@@ -74,9 +74,9 @@ export default function DesktopHome() {
       {/* Hero Section */}
       <div className="relative h-[600px] flex items-center justify-center mt-20">
         <img 
-          src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1920&auto=format&fit=crop" 
+          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920&auto=format&fit=crop" 
           className="absolute inset-0 w-full h-full object-cover" 
-          alt="Hero Surfer" 
+          alt="Hero Tropical" 
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-white"></div>
         

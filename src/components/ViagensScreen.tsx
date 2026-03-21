@@ -20,7 +20,7 @@ const frota = [
     TagIcon: Zap,
     subtitulo: 'A viagem mais rápida da região',
     imagens: [
-      'https://i.postimg.cc/PxPPqhVN/Image-202602250115.jpg',
+      'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=800&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop'
     ],
@@ -39,7 +39,7 @@ const frota = [
     TagIcon: Anchor,
     subtitulo: 'O gigante dos rios',
     imagens: [
-      'http://macamazon.com.br/wp-content/uploads/2025/04/WhatsApp-Image-2024-02-15-at-16.53.41.jpeg',
+      'https://images.unsplash.com/photo-1540946485063-a40da27545f8?q=80&w=800&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop'
     ],
@@ -162,7 +162,7 @@ export default function ViagensScreen({ onClose }: { onClose: () => void }) {
                   {/* Example Card */}
                   <div className="rounded-[20px] p-4 shadow-[0_4px_16px_rgba(0,122,255,0.08)] active:scale-[0.98] transition-transform cursor-pointer" style={{ background: 'var(--bg-card)' }}>
                     <div className="flex items-center gap-4 mb-4">
-                      <img src="https://i.postimg.cc/PxPPqhVN/Image-202602250115.jpg" className="w-[60px] h-[60px] rounded-xl object-cover" alt="Navio" />
+                      <img src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=800&auto=format&fit=crop" className="w-[60px] h-[60px] rounded-xl object-cover" alt="Navio" />
                       <div>
                         <h3 className="text-[17px] font-bold" style={{ color: 'var(--text-primary)' }}>NM Amazon Star</h3>
                         <p className="text-[15px] opacity-70" style={{ color: 'var(--text-secondary)' }}>Rede Bronze</p>

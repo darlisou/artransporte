@@ -78,7 +78,7 @@ const frotaItems = [
     id: 1,
     title: "N/M 'Amazon Star'",
     subtitle: "A viagem mais rápida da região. Ganhe tempo com velocidade e tecnologia.",
-    image: "https://i.postimg.cc/PxPPqhVN/Image-202602250115.jpg",
+    image: "https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=800&auto=format&fit=crop",
     tag: "Veloz",
     Icon: Zap,
     iconColor: "text-[#FF9500]"
@@ -87,7 +87,7 @@ const frotaItems = [
     id: 2,
     title: "F/B 'Catamarã Rondônia'",
     subtitle: "O gigante dos rios. Espaço, estabilidade e a tradição de uma viagem clássica.",
-    image: "http://macamazon.com.br/wp-content/uploads/2025/04/WhatsApp-Image-2024-02-15-at-16.53.41.jpeg",
+    image: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?q=80&w=800&auto=format&fit=crop",
     tag: "Clássico",
     Icon: Anchor,
     iconColor: "text-[#007AFF]"
