@@ -105,7 +105,7 @@ export default function Navbar({ onOpenViagens }: { onOpenViagens: () => void })
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}>
             {imageError ? (
-              <span className="text-xl md:text-2xl font-bold text-[#007AFF]">AR Transportes</span>
+              <span className="text-xl md:text-2xl font-bold text-[#003DA5]">AR Transportes</span>
             ) : (
               <img 
                 src="https://i.ibb.co/WNFFF998/unnamed-Photoroom.png" 

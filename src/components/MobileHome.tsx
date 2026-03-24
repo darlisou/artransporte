@@ -90,7 +90,7 @@ const frotaItems = [
     image: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?q=80&w=800&auto=format&fit=crop",
     tag: "Clássico",
     Icon: Anchor,
-    iconColor: "text-[#007AFF]"
+    iconColor: "text-[#003DA5]"
   }
 ];
 
@@ -197,7 +197,7 @@ export default function MobileHome() {
       <div id="acomodacoes" className="mt-0 md:mt-16 max-w-7xl mx-auto px-8 md:px-12 xl:px-0">
         <div className="flex justify-between items-end mb-[32px] md:mb-[40px]">
           <h2 className="text-[28px] font-[800] md:font-semibold tracking-tight" style={{ color: 'var(--text-primary)' }} data-animate>Acomodações</h2>
-          <button className="text-[13px] md:text-[16px] text-[#007AFF] font-medium hover:underline m-0 p-0 text-right">Ver Tudo</button>
+          <button className="text-[13px] md:text-[16px] text-[#003DA5] font-medium hover:underline m-0 p-0 text-right">Ver Tudo</button>
         </div>
         
         <InfiniteStackDeck items={accommodations} />

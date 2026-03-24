@@ -35,7 +35,7 @@ const frota = [
     id: 2,
     nome: "F/B 'Catamarã Rondônia'",
     tag: 'Clássico',
-    tagColor: 'text-[#007AFF]',
+    tagColor: 'text-[#003DA5]',
     TagIcon: Anchor,
     subtitulo: 'O gigante dos rios',
     imagens: [
@@ -113,19 +113,19 @@ export default function ViagensScreen({ onClose }: { onClose: () => void }) {
 
           <button 
             onClick={() => setActiveTab('minhas-viagens')}
-            className={`relative z-10 flex-1 flex items-center justify-center text-[15px] transition-colors duration-300 ${activeTab === 'minhas-viagens' ? 'text-[#007AFF] font-semibold' : 'text-[#3C3C43] font-normal'}`}
+            className={`relative z-10 flex-1 flex items-center justify-center text-[15px] transition-colors duration-300 ${activeTab === 'minhas-viagens' ? 'text-[#003DA5] font-semibold' : 'text-[#3C3C43] font-normal'}`}
           >
             Minhas Viagens
           </button>
           <button 
             onClick={() => setActiveTab('rotas')}
-            className={`relative z-10 flex-1 flex items-center justify-center text-[15px] transition-colors duration-300 ${activeTab === 'rotas' ? 'text-[#007AFF] font-semibold' : 'text-[#3C3C43] font-normal'}`}
+            className={`relative z-10 flex-1 flex items-center justify-center text-[15px] transition-colors duration-300 ${activeTab === 'rotas' ? 'text-[#003DA5] font-semibold' : 'text-[#3C3C43] font-normal'}`}
           >
             Rotas
           </button>
           <button 
             onClick={() => setActiveTab('frota')}
-            className={`relative z-10 flex-1 flex items-center justify-center text-[15px] transition-colors duration-300 ${activeTab === 'frota' ? 'text-[#007AFF] font-semibold' : 'text-[#3C3C43] font-normal'}`}
+            className={`relative z-10 flex-1 flex items-center justify-center text-[15px] transition-colors duration-300 ${activeTab === 'frota' ? 'text-[#003DA5] font-semibold' : 'text-[#3C3C43] font-normal'}`}
           >
             Nossa Frota
           </button>
@@ -152,7 +152,7 @@ export default function ViagensScreen({ onClose }: { onClose: () => void }) {
                   <p className="text-[15px] text-[#3C3C43] opacity-70 mb-8 max-w-[280px]">Explore nossos destinos e agende sua próxima aventura</p>
                   <button 
                     onClick={() => setActiveTab('rotas')}
-                    className="bg-[#007AFF] text-white font-semibold text-[17px] px-8 py-3 rounded-full hover:bg-[#0066CC] active:scale-95 transition-all"
+                    className="bg-[#003DA5] text-white font-semibold text-[17px] px-8 py-3 rounded-full hover:bg-[#0066CC] active:scale-95 transition-all"
                   >
                     Agendar Viagem
                   </button>
@@ -176,7 +176,7 @@ export default function ViagensScreen({ onClose }: { onClose: () => void }) {
                     <p className="text-[13px] mb-4" style={{ color: 'var(--text-secondary)' }}>23 Dez - 6 Jan • 36h</p>
                     <div className="flex items-center justify-between pt-4 border-t" style={{ borderColor: 'var(--border-color)' }}>
                       <span className="bg-[#34C759] text-white text-[12px] font-semibold px-3 py-1 rounded-full">Confirmada</span>
-                      <div className="flex items-center gap-1 text-[#007AFF]">
+                      <div className="flex items-center gap-1 text-[#003DA5]">
                         <span className="text-[15px] font-medium">Ver Detalhes</span>
                         <ChevronRight className="w-4 h-4" />
                       </div>
@@ -202,8 +202,8 @@ export default function ViagensScreen({ onClose }: { onClose: () => void }) {
                   {/* Mini Map Visual */}
                   <div className="h-[100px] rounded-xl mb-4 flex items-center justify-between px-6 relative overflow-hidden" style={{ background: 'var(--bg-primary)' }}>
                     <div className="absolute top-1/2 left-6 right-6 h-[2px] bg-blue-200 -translate-y-1/2 border-t-2 border-dashed border-blue-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#007AFF] z-10 shadow-[0_0_0_4px_rgba(0,122,255,0.2)]"></div>
-                    <Ship className="w-6 h-6 text-[#007AFF] z-10 px-1" style={{ background: 'var(--bg-primary)' }} />
+                    <div className="w-3 h-3 rounded-full bg-[#003DA5] z-10 shadow-[0_0_0_4px_rgba(0,122,255,0.2)]"></div>
+                    <Ship className="w-6 h-6 text-[#003DA5] z-10 px-1" style={{ background: 'var(--bg-primary)' }} />
                     <div className="w-3 h-3 rounded-full bg-[#FF9500] z-10 shadow-[0_0_0_4px_rgba(255,149,0,0.2)]"></div>
                   </div>
 
@@ -228,7 +228,7 @@ export default function ViagensScreen({ onClose }: { onClose: () => void }) {
                     </div>
                   </div>
 
-                  <button className="w-full py-3 rounded-xl border border-[#007AFF] text-[#007AFF] font-semibold text-[15px] hover:bg-[#007AFF] hover:text-white transition-colors active:scale-[0.98]">
+                  <button className="w-full py-3 rounded-xl border border-[#003DA5] text-[#003DA5] font-semibold text-[15px] hover:bg-[#003DA5] hover:text-white transition-colors active:scale-[0.98]">
                     Ver Horários →
                   </button>
                 </div>
@@ -292,14 +292,14 @@ export default function ViagensScreen({ onClose }: { onClose: () => void }) {
 
                     <h4 className="text-[13px] font-bold uppercase tracking-wider mb-3" style={{ color: 'var(--text-secondary)' }}>Comodidades</h4>
                     <div className="grid grid-cols-5 gap-2 mb-8">
-                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><Wifi className="w-5 h-5 text-[#007AFF]" /></div>
-                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><Utensils className="w-5 h-5 text-[#007AFF]" /></div>
-                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><Wind className="w-5 h-5 text-[#007AFF]" /></div>
-                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><BedDouble className="w-5 h-5 text-[#007AFF]" /></div>
-                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><Bath className="w-5 h-5 text-[#007AFF]" /></div>
+                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><Wifi className="w-5 h-5 text-[#003DA5]" /></div>
+                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><Utensils className="w-5 h-5 text-[#003DA5]" /></div>
+                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><Wind className="w-5 h-5 text-[#003DA5]" /></div>
+                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><BedDouble className="w-5 h-5 text-[#003DA5]" /></div>
+                      <div className="aspect-square rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}><Bath className="w-5 h-5 text-[#003DA5]" /></div>
                     </div>
 
-                    <button className="w-full bg-[#007AFF] text-white font-semibold text-[17px] py-3.5 rounded-full hover:bg-[#0066CC] active:scale-[0.98] transition-all md:mt-auto">
+                    <button className="w-full bg-[#003DA5] text-white font-semibold text-[17px] py-3.5 rounded-full hover:bg-[#0066CC] active:scale-[0.98] transition-all md:mt-auto">
                       Agendar neste Navio →
                     </button>
                   </div>

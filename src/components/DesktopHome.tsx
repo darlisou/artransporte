@@ -50,21 +50,21 @@ export default function DesktopHome() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-          <div className="text-2xl font-bold text-[#007AFF] tracking-tight">TravelJoy</div>
+          <div className="text-2xl font-bold text-[#003DA5] tracking-tight">TravelJoy</div>
           <div className="flex items-center gap-8">
-            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-[#007AFF] font-medium transition-colors">
+            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-[#003DA5] font-medium transition-colors">
               <Home className="w-5 h-5" /> Início
             </a>
-            <a href="#" className="flex items-center gap-2 text-[#007AFF] font-medium transition-colors">
+            <a href="#" className="flex items-center gap-2 text-[#003DA5] font-medium transition-colors">
               <MapPin className="w-5 h-5" /> Destinos
             </a>
-            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-[#007AFF] font-medium transition-colors">
+            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-[#003DA5] font-medium transition-colors">
               <BadgePercent className="w-5 h-5" /> Ofertas
             </a>
-            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-[#007AFF] font-medium transition-colors">
+            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-[#003DA5] font-medium transition-colors">
               <Briefcase className="w-5 h-5" /> Viagens
             </a>
-            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-[#007AFF] font-medium transition-colors">
+            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-[#003DA5] font-medium transition-colors">
               <Smile className="w-5 h-5" /> Conta
             </a>
           </div>
@@ -93,7 +93,7 @@ export default function DesktopHome() {
             <div className="w-full text-lg text-gray-400 text-left">
               Buscar destinos, atividades ou passeios
             </div>
-            <button className="bg-[#007AFF] text-white px-8 py-3 rounded-full font-semibold ml-4 hover:bg-[#005bb5] transition-colors shrink-0">
+            <button className="bg-[#003DA5] text-white px-8 py-3 rounded-full font-semibold ml-4 hover:bg-[#005bb5] transition-colors shrink-0">
               Buscar
             </button>
           </div>
@@ -121,7 +121,7 @@ export default function DesktopHome() {
       {/* Tabs */}
       <div className="max-w-7xl mx-auto px-8 mt-20">
         <div className="flex gap-12 border-b border-gray-200">
-          <button className="py-4 text-[#007AFF] font-semibold text-lg border-b-[3px] border-[#007AFF]">
+          <button className="py-4 text-[#003DA5] font-semibold text-lg border-b-[3px] border-[#003DA5]">
             Leste Asiático
           </button>
           <button className="py-4 text-gray-500 font-medium text-lg hover:text-gray-900 transition-colors">
@@ -137,7 +137,7 @@ export default function DesktopHome() {
       <div className="max-w-7xl mx-auto px-8 mt-12">
         <div className="flex justify-between items-end mb-8">
           <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Hong Kong & Macau</h2>
-          <a href="#" className="text-lg text-gray-800 underline font-medium hover:text-[#007AFF] transition-colors">Explorar</a>
+          <a href="#" className="text-lg text-gray-800 underline font-medium hover:text-[#003DA5] transition-colors">Explorar</a>
         </div>
         <div className="grid grid-cols-4 gap-6">
           {hkMacau.map(dest => (
@@ -154,7 +154,7 @@ export default function DesktopHome() {
       <div className="max-w-7xl mx-auto px-8 mt-16">
         <div className="flex justify-between items-end mb-8">
           <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Taiwan</h2>
-          <a href="#" className="text-lg text-gray-800 underline font-medium hover:text-[#007AFF] transition-colors">Explorar</a>
+          <a href="#" className="text-lg text-gray-800 underline font-medium hover:text-[#003DA5] transition-colors">Explorar</a>
         </div>
         <div className="grid grid-cols-4 gap-6">
           {taiwan.map(dest => (
